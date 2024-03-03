@@ -1,6 +1,7 @@
 import { View, ScrollView, SafeAreaView } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { useState } from "react";
+import { registerRootComponent } from 'expo';
 
 import { COLORS, icons, images, SIZES } from "@/constants";
 import { Icons } from "@/types";
@@ -50,5 +51,7 @@ const Home = () => {
     </SafeAreaView>
   );
 };
+
+registerRootComponent(Home);
 
 export default Home;

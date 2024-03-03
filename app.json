@@ -19,6 +19,7 @@
       "supportsTablet": true
     },
     "android": {
+      "android:uses-permission": ["android.permission.DETECT_SCREEN_CAPTURE"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"

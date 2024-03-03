@@ -92,7 +92,7 @@ const JobSearch = () => {
         )}
         ListEmptyComponent={<NotFound />}
         ListFooterComponent={() =>
-          !visibleItems.length ? null : (
+           (
             <View style={styles.footerContainer}>
               <TouchableOpacity
                 style={styles.paginationButton}
