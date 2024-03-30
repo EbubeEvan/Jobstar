@@ -1,10 +1,10 @@
-import { View, ScrollView, SafeAreaView } from "react-native";
+import { View, ScrollView, SafeAreaView, Image } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { useState } from "react";
 import { registerRootComponent } from 'expo';
 
 import { COLORS, icons, images, SIZES } from "@/constants";
-import { Icons } from "@/types";
+import { Icons } from "@/lib/types";
 import {
   Nearbyjobs,
   Popularjobs,
@@ -25,7 +25,7 @@ const Home = () => {
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,
           headerLeft: () => (
-            <ScreenHeaderBtn iconUrl={iconSet.menu} />
+            <Image source={images.logo} className="w-32 h-32" resizeMode="cover"/>
           ),
           headerRight: () => (
             <ScreenHeaderBtn iconUrl={images.profile}  />

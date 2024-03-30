@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { Job } from "@/types";
+import { Job } from "@/lib/types";
 import { ImageStyle } from "react-native";
 
 import styles from "./nearbyjobcard.style";

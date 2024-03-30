@@ -8,20 +8,17 @@ import {
 } from "react-native";
 import { Stack, useGlobalSearchParams } from "expo-router";
 import { useCallback, useState } from "react";
-import { convertToHyphens } from "@/utils";
+import { convertToHyphens } from "@/lib/utils";
 
 import {
   Company,
   JobAbout,
   JobFooter,
   ScreenHeaderBtn,
-  Specifics,
 } from "@/components";
-import { COLORS, SIZES, icons } from "@/constants";
-import { Job } from "@/types";
+import { COLORS, SIZES, icons } from '@/constants'
+import { Job } from "@/lib/types";
 import useFetch from "@/hooks/useFetch";
-
-const tabs = ["About", "Qualifications"];
 
 const JobDetails = () => {
   const params = useGlobalSearchParams();

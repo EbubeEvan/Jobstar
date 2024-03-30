@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { Item } from "@/types";
+import { Item } from "@/lib/types";
 import { ImageStyle } from "react-native";
 
 import styles from "./popularjobcard.style";

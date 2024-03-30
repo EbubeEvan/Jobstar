@@ -14,7 +14,7 @@ import { NearbyJobCard } from "../../components";
 import { COLORS, icons, SIZES } from "../../constants";
 import styles from "../../styles/search";
 import useFetch from "@/hooks/useFetch";
-import { Item } from "@/types";
+import { Item } from "@/lib/types";
 
 const JobSearch = () => {
   const params = useGlobalSearchParams();

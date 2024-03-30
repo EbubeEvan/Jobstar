@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Query } from "@/types";
+import { Query } from "@/lib/types";
 
 const useFetch = ( query?: Query) => {
   const [data, setData] = useState([]);

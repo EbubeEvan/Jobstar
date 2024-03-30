@@ -1,5 +1,18 @@
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
+import { useEffect, useState } from "react";
+import { User, onAuthStateChanged } from "firebase/auth";
+import { FIRERBASE_AUTH } from "@/firebaseConfig";
+
+const InsideLayout = () => {
+  return (
+    <Stack initialRouteName="index">
+      <Stack.Screen name="index" />
+      <Stack.Screen name="job-details/[id]" />
+      <Stack.Screen name="search/[id]" />
+    </Stack>
+  );
+};
 
 const Layout = () => {
   const [fontsLoaded] = useFonts({
@@ -12,13 +25,22 @@ const Layout = () => {
     return null;
   }
 
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    onAuthStateChanged(FIRERBASE_AUTH, (user) => console.log("user", user));
+  }, []);
+
   return (
     <Stack initialRouteName="index">
-      <Stack.Screen name="index" />
-      <Stack.Screen name="job-details/[id]" />
-      <Stack.Screen name="search/[id]" />
+      {user ? (
+        <Stack.Screen name="InsideLayout" />
+      ) : (
+        <Stack.Screen name="login" />
+      )}
+      <Stack.Screen name="signIn" />
     </Stack>
-  )
+  );
 };
 
 export default Layout;

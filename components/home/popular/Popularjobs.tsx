@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import useFetch from "@/hooks/useFetch";
-import { Item } from "@/types";
+import { Item } from "@/lib/types";
 
 import styles from "./popularjobs.style";
 import { COLORS, SIZES } from "@/constants";
