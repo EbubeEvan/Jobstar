@@ -8,7 +8,7 @@ import { useRouter } from "expo-router";
 import useFetch from "@/hooks/useFetch";
 import { Job } from "@/lib/types";
 
-import styles from "./nearbyjobs.style";
+import styles from "./remotejobs.style";
 import { COLORS } from "@/constants";
 import NearbyJobCard from "@/components/common/cards/nearby/NearbyJobCard";
 
@@ -18,13 +18,15 @@ const Nearbyjobs = () => {
     sort_by : 'relevance'
   });
 
+  const onSiteJobs = (data as Job[]).filter((data) => data.location !== null)
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Nearby Jobs</Text>
-        <TouchableOpacity>
+        <Text style={styles.headerTitle}>Onsite Jobs</Text>
+        {/* <TouchableOpacity>
           <Text style={styles.headerBtn}>Show all</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
 
       <View style={styles.cardsContainer}>
@@ -33,7 +35,7 @@ const Nearbyjobs = () => {
         ) : error ? (
           <Text>Something went wrong</Text>
         ) : (
-          (data as Job[])?.map((job) => (
+          (onSiteJobs)?.map((job) => (
             <NearbyJobCard job={job} key={`nearby-job${job?.id}`} handleNavigate={() => router.push(`job-details/${job.id}` as `${string}:${string}`)}/>
           ))
         )}

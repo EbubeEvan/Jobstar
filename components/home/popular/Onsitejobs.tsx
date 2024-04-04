@@ -10,13 +10,15 @@ import { useRouter } from "expo-router";
 import useFetch from "@/hooks/useFetch";
 import { Item } from "@/lib/types";
 
-import styles from "./popularjobs.style";
+import styles from "./onsitejobs.style";
 import { COLORS, SIZES } from "@/constants";
 import PopularJobCard from "@/components/common/cards/popular/PopularJobCard";
 
 const Popularjobs = () => {
   const router = useRouter();
   const { data, isLoading, error } = useFetch();
+
+  const remoteJobs = (data as Item[]).filter((data) => data.location === null)
 
   const [selectedJob, setSelectedJob] = useState('');
 
@@ -28,7 +30,7 @@ const Popularjobs = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Popular Jobs</Text>
+        <Text style={styles.headerTitle}>Remote Jobs</Text>
         <TouchableOpacity>
           <Text style={styles.headerBtn}>Show all</Text>
         </TouchableOpacity>
@@ -41,7 +43,7 @@ const Popularjobs = () => {
           <Text>Something went wrong</Text>
         ) : (
           <FlatList
-            data={data}
+            data={remoteJobs}
             renderItem={({ item }) => <PopularJobCard item={item} selectedJob={selectedJob} handleCardPress={() => handleCardPress(item)}/>}
             keyExtractor={(item : Item) => item?.id}
             contentContainerStyle={{ columnGap: SIZES.medium }}

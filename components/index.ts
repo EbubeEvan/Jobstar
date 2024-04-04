@@ -2,8 +2,8 @@ import ScreenHeaderBtn from "./common/header/ScreenHeaderBtn";
 
 // home screen
 import Welcome from "./home/welcome/Welcome";
-import Nearbyjobs from "./home/nearby/Nearbyjobs";
-import Popularjobs from "./home/popular/Popularjobs";
+import Nearbyjobs from "./home/nearby/RemoteJobs";
+import Popularjobs from "./home/popular/Onsitejobs";
 
 // job details screen
 import Company from "./jobdetails/company/Company";

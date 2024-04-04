@@ -2,13 +2,13 @@ export interface Icons {
   heart: string;
   menu: string;
   search: string;
-  filter: string;
-  left: string;
   heartOutline: string;
   share: string;
   location: string;
-  chevronLeft: string;
-  chevronRight: string;
+  logout: string,
+  home: string,
+  chevronRight: string,
+  chevronLeft: string
 }
 
 export interface Query {

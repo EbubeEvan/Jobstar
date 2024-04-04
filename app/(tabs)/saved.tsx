@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -8,47 +7,49 @@ import {
   Text,
   SafeAreaView,
 } from "react-native";
-import NotFound from "@/components/search/NotFound";
-import { Stack, useRouter, useGlobalSearchParams } from "expo-router";
+import { Stack, router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useState, useEffect } from "react";
 
 import { NearbyJobCard } from "../../components";
 import { COLORS, icons, SIZES } from "../../constants";
 import styles from "../../styles/search";
-import useFetch from "@/hooks/useFetch";
-import { Item } from "@/lib/types";
+import { Job } from "@/lib/types";
+import NotFound from "@/components/search/NotFound";
 
-const JobSearch = () => {
-  const params = useGlobalSearchParams();
-  const router = useRouter();
-
+const saved = () => {
+  const [jobList, setJobList] = useState<Job[] | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(2);
-  const [visibleItems, setVisibleItems] = useState<Item[]>([]);
 
-  const { data, isLoading, error } = useFetch();
+  useEffect(() => {
+    const getSavedJobs = async () => {
+      setIsLoading(true);
+      try {
+        const savedJobsString = await AsyncStorage.getItem("Jobs");
+        if (savedJobsString !== null) {
+          const savedJobs: Job[] = JSON.parse(savedJobsString);
+          setJobList(savedJobs);
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  const lowerCaseId = (params.id as string)?.toLowerCase();
-
-  const resultData = (data as Item[])?.filter(
-    (result) =>
-      result?.keywords
-        ?.map((keyword) => keyword.toLowerCase())
-        ?.includes(lowerCaseId) ||
-      result.role.toLowerCase().includes(lowerCaseId) ||
-      result.employment_type?.toLowerCase() === lowerCaseId
-  );
+    getSavedJobs();
+  }, []);
 
   const itemsPerPage = 10;
 
   const handlePagination = (direction: string) => {
-    const totalPages = resultData.length / itemsPerPage;
+    const totalPages = jobList?.length! / itemsPerPage;
     if (direction === "left") {
       page > 1 && setPage(page - 1);
     } else {
       page < totalPages && setPage(page + 1);
     }
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = Math.min(page * itemsPerPage, resultData.length);
-    setVisibleItems(resultData.slice(startIndex, endIndex));
   };
 
   return (
@@ -57,14 +58,13 @@ const JobSearch = () => {
         options={{
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,
+          headerBackVisible: true,
           headerTitle: "",
         }}
       />
 
       <FlatList
-        data={
-          visibleItems.length ? visibleItems : resultData.slice(0, itemsPerPage)
-        }
+        data={jobList!}
         renderItem={({ item }) => (
           <NearbyJobCard
             job={item}
@@ -76,16 +76,14 @@ const JobSearch = () => {
         ListHeaderComponent={() => (
           <>
             <View style={styles.container}>
-              <Text style={styles.searchTitle}>{params.id}</Text>
+              <Text style={styles.searchTitle}>Saved Jobs</Text>
               <Text style={styles.noOfSearchedJobs}>Job Opportunities</Text>
             </View>
             <View style={styles.loaderContainer}>
               <>
                 {/* Other content inside the header */}
-                {isLoading ? (
+                {isLoading && (
                   <ActivityIndicator size="large" color={COLORS.primary} />
-                ) : (
-                  error && <Text>Oops something went wrong</Text>
                 )}
               </>
             </View>
@@ -126,4 +124,4 @@ const JobSearch = () => {
   );
 };
 
-export default JobSearch;
+export default saved;

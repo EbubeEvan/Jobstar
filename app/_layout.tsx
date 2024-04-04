@@ -1,18 +1,6 @@
-import { Stack } from "expo-router";
+import { Stack, SplashScreen } from "expo-router";
 import { useFonts } from "expo-font";
-import { useEffect, useState } from "react";
-import { User, onAuthStateChanged } from "firebase/auth";
-import { FIRERBASE_AUTH } from "@/firebaseConfig";
-
-const InsideLayout = () => {
-  return (
-    <Stack initialRouteName="index">
-      <Stack.Screen name="index" />
-      <Stack.Screen name="job-details/[id]" />
-      <Stack.Screen name="search/[id]" />
-    </Stack>
-  );
-};
+import { useEffect } from "react";
 
 const Layout = () => {
   const [fontsLoaded] = useFonts({
@@ -21,24 +9,27 @@ const Layout = () => {
     DMRegular: require("../assets/fonts/DMSans-Regular.ttf"),
   });
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  SplashScreen.preventAutoHideAsync();
 
-  const [user, setUser] = useState<User | null>(null);
+  const unstable_settings = {
+    initialRouteName: "(tabs)",
+  };
 
   useEffect(() => {
-    onAuthStateChanged(FIRERBASE_AUTH, (user) => console.log("user", user));
-  }, []);
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  } 
 
   return (
-    <Stack initialRouteName="index">
-      {user ? (
-        <Stack.Screen name="InsideLayout" />
-      ) : (
-        <Stack.Screen name="login" />
-      )}
-      <Stack.Screen name="signIn" />
+    <Stack>
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="login" />
+      <Stack.Screen name="signup" />
     </Stack>
   );
 };
