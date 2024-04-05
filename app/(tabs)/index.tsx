@@ -26,7 +26,7 @@ const Home = () => {
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,
           headerLeft: () => (
-            <Image source={images.logo} className="w-32 h-32" resizeMode="cover"/>
+            <Image source={images.logo} className="w-44 h-32" resizeMode="cover"/>
           ),
           headerRight: () => (
             <TouchableOpacity onPress={() => auth.signOut()}>

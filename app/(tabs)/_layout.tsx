@@ -19,7 +19,7 @@ const Layout = () => {
     <Tabs initialRouteName="index">
       <Tabs.Screen name="index" options={{
         tabBarIcon : () => (
-          <Image source={icons.home} className="w-8 h-8 outline-double" resizeMode="cover"/>
+          <Image source={icons.home} className="w-8 h-8" resizeMode="cover"/>
         )
       }}/>
       <Tabs.Screen name="saved" options={{
