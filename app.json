@@ -4,7 +4,7 @@
     "slug": "Jobstar",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/cover.png",
+    "icon": "./assets/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -21,7 +21,7 @@
     "android": {
       "android:uses-permission": ["android.permission.DETECT_SCREEN_CAPTURE"],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/cover.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.ebubeevan.jobstar"

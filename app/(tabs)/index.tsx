@@ -6,11 +6,9 @@ import { auth } from "@/firebaseConfig";
 
 import { COLORS, icons, images, SIZES } from "@/constants";
 import { Icons } from "@/lib/types";
-import {
-  Nearbyjobs,
-  Popularjobs,
-  Welcome,
-} from "@/components";
+import Onsitejobs from "@/components/home/popular/Onsitejobs";
+import RemoteJobs from "@/components/home/nearby/RemoteJobs";
+import { Welcome } from "@/components";
 
 
 const Home = () => {
@@ -30,7 +28,7 @@ const Home = () => {
           ),
           headerRight: () => (
             <TouchableOpacity onPress={() => auth.signOut()}>
-              <Image source={iconSet.logout as ImageProps} className="w-10 h-10 mr-3" resizeMode="cover"/>
+              <Image source={iconSet.logout as ImageProps} className="w-7 h-7 mr-3" resizeMode="cover"/>
             </TouchableOpacity>
           ),
           headerTitle: "",
@@ -47,8 +45,8 @@ const Home = () => {
               }
             }}
           />
-          <Popularjobs />
-          <Nearbyjobs />
+          <Onsitejobs />
+          <RemoteJobs />
         </View>
       </ScrollView>
     </SafeAreaView>

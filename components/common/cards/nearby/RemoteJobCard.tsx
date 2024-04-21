@@ -2,9 +2,9 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Job } from "@/lib/types";
 import { ImageStyle } from "react-native";
 
-import styles from "./nearbyjobcard.style";
+import styles from "./remotejobcard.style";
 
-const NearbyJobCard = ({job, handleNavigate} : {job : Job , handleNavigate : () => void}) => {
+const RemoteJobCard = ({job, handleNavigate} : {job : Job , handleNavigate : () => void}) => {
   return (
     <TouchableOpacity
       style={styles.container}
@@ -35,4 +35,4 @@ const NearbyJobCard = ({job, handleNavigate} : {job : Job , handleNavigate : () 
   );
 };
 
-export default NearbyJobCard;
+export default RemoteJobCard;

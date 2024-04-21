@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   View,
   Text,
-  TouchableOpacity,
   FlatList,
   ActivityIndicator,
 } from "react-native";
@@ -12,11 +11,11 @@ import { Item } from "@/lib/types";
 
 import styles from "./onsitejobs.style";
 import { COLORS, SIZES } from "@/constants";
-import PopularJobCard from "@/components/common/cards/popular/PopularJobCard";
+import OnsiteJobCard from "@/components/common/cards/onsite/OnsiteJobCard";
 
-const Popularjobs = () => {
+const Onsitejobs = () => {
   const router = useRouter();
-  const { data, isLoading, error } = useFetch();
+  const { data, isLoading, error, refetch } = useFetch();
 
   const remoteJobs = (data as Item[]).filter((data) => data.location === null)
 
@@ -44,7 +43,7 @@ const Popularjobs = () => {
         ) : (
           <FlatList
             data={remoteJobs}
-            renderItem={({ item }) => <PopularJobCard item={item} selectedJob={selectedJob} handleCardPress={() => handleCardPress(item)}/>}
+            renderItem={({ item }) => <OnsiteJobCard item={item} selectedJob={selectedJob} handleCardPress={() => handleCardPress(item)}/>}
             keyExtractor={(item : Item) => item?.id}
             contentContainerStyle={{ columnGap: SIZES.medium }}
             horizontal
@@ -55,4 +54,4 @@ const Popularjobs = () => {
   );
 };
 
-export default Popularjobs;
+export default Onsitejobs;

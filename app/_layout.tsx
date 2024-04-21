@@ -1,6 +1,7 @@
 import { Stack, SplashScreen } from "expo-router";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
+import { StatusBar } from "expo-status-bar";
 
 const Layout = () => {
   const [fontsLoaded] = useFonts({
@@ -23,14 +24,17 @@ const Layout = () => {
 
   if (!fontsLoaded) {
     return null;
-  } 
+  }
 
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="login" />
-      <Stack.Screen name="signup" />
-    </Stack>
+    <>
+      <StatusBar style="dark" />
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="login" />
+        <Stack.Screen name="signup" />
+      </Stack>
+    </>
   );
 };
 

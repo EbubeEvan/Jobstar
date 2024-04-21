@@ -1,11 +1,10 @@
-import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Item } from "@/lib/types";
 import { ImageStyle } from "react-native";
 
-import styles from "./popularjobcard.style";
+import styles from "./onsitejobcard.style";
 
-const PopularJobCard = ({
+const OnsiteJobCard = ({
   item,
   selectedJob,
   handleCardPress
@@ -55,4 +54,4 @@ const PopularJobCard = ({
   );
 };
 
-export default PopularJobCard;
+export default OnsiteJobCard;

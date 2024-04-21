@@ -1,10 +1,10 @@
-import { Stack } from "expo-router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebaseConfig";
 import { router, Tabs } from "expo-router";
 import { Image } from "react-native";
 import { icons } from "@/constants";
+import { FontAwesome } from "@expo/vector-icons";
 
 const Layout = () => {
   useEffect(() => {
@@ -17,15 +17,19 @@ const Layout = () => {
 
   return (
     <Tabs initialRouteName="index">
-      <Tabs.Screen name="index" options={{
+      <Tabs.Screen name="index" options={{ title : "Home",
         tabBarIcon : () => (
-          <Image source={icons.home} className="w-8 h-8" resizeMode="cover"/>
-        )
+          <FontAwesome name="home" color='grey' size={20} className="w-6 h-6 mt-4" />
+        ),
+        tabBarActiveBackgroundColor : 'lightblue',
+        tabBarActiveTintColor: 'white'
       }}/>
-      <Tabs.Screen name="saved" options={{
+      <Tabs.Screen name="saved" options={{ title : "Saved",
         tabBarIcon : () => (
-          <Image source={icons.heartOutline} className="w-8 h-8" resizeMode="cover"/>
-        )
+          <FontAwesome name="heart" color='grey' size={20}  className="w-6 h-6 mt-3" />
+        ),
+        tabBarActiveBackgroundColor : 'lightblue',
+        tabBarActiveTintColor: 'white'
       }}/>
     </Tabs>
   );
