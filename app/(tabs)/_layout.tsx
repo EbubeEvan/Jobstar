@@ -1,45 +1,45 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { Tabs } from "expo-router";
+import { FontAwesome } from "@expo/vector-icons";
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+const Layout = () => {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+    <Tabs initialRouteName="index">
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: "Home",
+          tabBarIcon: () => (
+            <FontAwesome
+              name="home"
+              color="#7597eb"
+              size={20}
+              className="w-6 h-6 mt-4"
+            />
+          ),
+          tabBarActiveBackgroundColor: "#342a52",
+          tabBarActiveTintColor: "white",
+          tabBarInactiveTintColor: "7597eb",
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="saved"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: "Saved",
+          tabBarIcon: () => (
+            <FontAwesome
+              name="heart"
+              color="#7597eb"
+              size={20}
+              className="w-6 h-6 mt-3"
+            />
+          ),
+          tabBarActiveBackgroundColor: "#342a52",
+          tabBarActiveTintColor: "white",
+          tabBarInactiveTintColor: "7597eb",
         }}
       />
     </Tabs>
   );
-}
+};
+
+export default Layout;
