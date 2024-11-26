@@ -30,7 +30,7 @@ const Login = () => {
         details.password
       );
       console.log(response);
-      router.push("/(tabs)");
+      router.replace("/(tabs)");
     } catch (error: any) {
       console.log(error);
       alert(`Sign in failed, ${error.message}`);

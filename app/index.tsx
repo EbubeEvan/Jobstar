@@ -1,34 +1,29 @@
 import { Redirect } from "expo-router";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, User } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth } from "@/firebaseConfig";
+import { Text, View } from "react-native";
 
 export default function Home() {
-    const [isSignedIn, setIsSignedIn] = useState(false);
-    const [loading, setLoading] = useState(true); // Add loading state to track authentication check
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setIsSignedIn(true);  // User is authenticated
-            } else {
-                setIsSignedIn(false);  // User is not authenticated
-            }
-            setLoading(false);  // Once authentication check is done, set loading to false
-        });
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setLoading(false);
+    });
 
-        // Cleanup on component unmount
-        return () => unsubscribe();
-    }, []);
+    return () => unsubscribe();
+  }, []);
 
-    if (loading) {
-        // Show a loading indicator or nothing until Firebase finishes authentication check
-        return null;  // You can replace this with a loading spinner if needed
-    }
+  if (loading) {
+    return null
+  }
 
-    if (isSignedIn) {
-        return <Redirect href={"/(tabs)"} />;
-    }
+  if (user) {
+    return <Redirect href={"/(tabs)"} />
+  }
 
-    return <Redirect href="/login" />;
+  return <Redirect href="/login" />;
 }

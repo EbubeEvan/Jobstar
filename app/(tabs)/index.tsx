@@ -2,20 +2,29 @@ import { View, ScrollView, SafeAreaView, Image, ImageProps, TouchableOpacity} fr
 import { Stack, useRouter } from "expo-router";
 import { useState } from "react";
 import { registerRootComponent } from 'expo';
-import { auth } from "@/firebaseConfig";
+import { signOut } from "firebase/auth";
 
 import { COLORS, icons, images, SIZES } from "@/constants";
 import { Icons } from "@/lib/types";
 import Onsitejobs from "@/components/home/popular/Onsitejobs";
 import RemoteJobs from "@/components/home/nearby/RemoteJobs";
 import { Welcome } from "@/components";
-
+import { auth } from "@/firebaseConfig";
 
 const Home = () => {
   const router = useRouter();
   const iconSet : Icons = icons;
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");;
 
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      console.log("User signed out successfully");
+      router.replace("/login");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -27,7 +36,7 @@ const Home = () => {
             <Image source={images.logo} className="w-44 h-32" resizeMode="cover"/>
           ),
           headerRight: () => (
-            <TouchableOpacity onPress={() => auth.signOut()}>
+            <TouchableOpacity onPress={handleLogout}>
               <Image source={iconSet.logout as ImageProps} className="w-7 h-7 mr-3" resizeMode="cover"/>
             </TouchableOpacity>
           ),
