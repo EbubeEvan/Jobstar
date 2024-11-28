@@ -25,7 +25,7 @@ export default function Home() {
         </View>
     )
   }
-
+ 
   if (user) {
     return <Redirect href={"/(tabs)"} />
   }

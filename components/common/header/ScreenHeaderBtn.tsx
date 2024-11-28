@@ -11,7 +11,7 @@ const ScreenHeaderBtn = ({
   const handleShare = async () => {
     try {
       await Share.share({
-        message: `Check out this job: ${shareLink}`,
+        message: `Check out this job`,
         title: "Job Details",
       });
 
@@ -22,13 +22,13 @@ const ScreenHeaderBtn = ({
   };
 
   return (
-    <TouchableOpacity style={styles.btnContainer} onPress={handleShare}>
-      <Image
-        source={iconUrl as ImageSourcePropType}
-        resizeMode="cover"
-        style={styles.btnImg}
-      />
-    </TouchableOpacity>
+  <TouchableOpacity style={styles.btnContainer} onPress={handleShare}>
+    <Image
+      source={iconUrl as ImageSourcePropType}
+      resizeMode="cover"
+      style={styles.btnImg}
+    />
+  </TouchableOpacity>
   );
 };
 

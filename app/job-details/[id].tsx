@@ -19,6 +19,7 @@ import {
 import { COLORS, SIZES, icons } from '@/constants'
 import { Job } from "@/lib/types";
 import useFetch from "@/hooks/useFetch";
+import TestShare from "@/components/common/header/test";
 
 const JobDetails = () => {
   const params = useGlobalSearchParams();
@@ -35,7 +36,7 @@ const JobDetails = () => {
     setRefreshing(false)
   }, []);
   
-  const shareLink = `jobstar://job-details/${params.id}`;
+  const shareLink = `https://jobstar.com//job-details/${params.id}`;
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -44,12 +45,6 @@ const JobDetails = () => {
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,
           headerBackVisible: true,
-          headerRight: () => (
-            <ScreenHeaderBtn
-              iconUrl={icons.share}
-              shareLink={shareLink as string}
-            />
-          ),
           headerTitle: "",
         }}
       />
@@ -60,6 +55,7 @@ const JobDetails = () => {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
+          
           {isLoading ? (
             <ActivityIndicator size="large" color={COLORS.primary} />
           ) : error ? (
@@ -73,7 +69,7 @@ const JobDetails = () => {
                 companyName={jobData!.company_name}
                 location={jobData!.location}
               />
-              <JobAbout info={jobData!.text ?? "No data provided"} />
+              <JobAbout info={jobData!.text ?? "No data provided"} shareLink={shareLink}/>
             </View>
           )}
         </ScrollView>
