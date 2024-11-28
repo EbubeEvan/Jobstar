@@ -20,8 +20,8 @@ export default function Home() {
 
   if (loading) {
     return (
-        <View className="flex justify-center items-center">
-            <Image source={images.iconLogo} resizeMode="center" />
+        <View className="flex justify-center items-center bg-white">
+            <Image source={images.iconLogo} resizeMode="center" className="w-10 h-10"/>
         </View>
     )
   }

@@ -34,8 +34,8 @@ const JobDetails = () => {
     refetch()
     setRefreshing(false)
   }, []);
-
-  const shareLink = `https://findwork.dev/${jobData?.id}/${convertToHyphens(jobData?.role!)}-at-${convertToHyphens(jobData?.company_name!)}` 
+  
+  const shareLink = `jobstar://job-details/${params.id}`;
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -47,7 +47,7 @@ const JobDetails = () => {
           headerRight: () => (
             <ScreenHeaderBtn
               iconUrl={icons.share}
-              shareLink={shareLink}
+              shareLink={shareLink as string}
             />
           ),
           headerTitle: "",
