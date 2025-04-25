@@ -5,12 +5,11 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "scheme": "https", 
+    "scheme": "jobstar", 
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true,
-      "associatedDomains": ["applinks:jobstar.com"] 
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
@@ -23,9 +22,8 @@
           "action": "VIEW",
           "data": [
             {
-              "scheme": "https",
-              "host": "jobstar.com",
-              "pathPrefix": "/job-details" 
+              "scheme": "jobstar",
+              "host": "jobstar"
             }
           ],
           "category": ["BROWSABLE", "DEFAULT"]

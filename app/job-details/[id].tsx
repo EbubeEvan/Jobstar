@@ -36,7 +36,7 @@ const JobDetails = () => {
     setRefreshing(false)
   }, []);
   
-  const shareLink = `https://jobstar.com//job-details/${params.id}`;
+  const shareLink = `Jobstar//job-details/${params.id}`;
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
