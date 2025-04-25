@@ -1,16 +1,19 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, initializeAuth, getReactNativePersistence  } from "firebase/auth";
+import { initializeAuth, getReactNativePersistence  } from "firebase/auth";
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 import { getFirestore } from "firebase/firestore";
+import Constants from "expo-constants";
+
+const extras = Constants.expoConfig?.extra
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDr8iWMMRZkz0y-U8o2ROIiHAZCCYewfJc",
-  authDomain: "jobstar-a8fca.firebaseapp.com",
-  projectId: "jobstar-a8fca",
-  storageBucket: "jobstar-a8fca.appspot.com",
-  messagingSenderId: "137446854007",
-  appId: "1:137446854007:web:e719feb7222eb45466e572"
+  apiKey: extras?.EXPO_PUBLIC_API_KEY || "",
+  authDomain: extras?.EXPO_PUBLIC_AUTH_DOMAIN || "",
+  projectId: extras?.EXPO_PUBLIC_PROJECT_ID || "",
+  storageBucket: extras?.EXPO_PUBLIC_STOARGE_BUCKET || "",
+  messagingSenderId: extras?.EXPO_PUBLIC_MESSAGING_SENDER_ID || "",
+  appId: extras?.EXPO_PUBLIC_APP_ID  || ""
 };
 
 // Initialize Firebase

@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Query } from "@/lib/types";
+import Constants from "expo-constants";
+
+const extras = Constants.expoConfig?.extra
 
 const useFetch = ( query?: Query) => {
   const [data, setData] = useState([]);
@@ -9,9 +12,9 @@ const useFetch = ( query?: Query) => {
 
   const options = {
     method: "GET",
-    url: `https://findwork.dev/api/jobs/`,
+    url: extras?.EXPO_PUBLIC_JOBS_API,
     headers: {
-      "Authorization": 'Token bd33b721608d111b24562f59e873fcf991c3cd7a',
+      "Authorization": extras?.EXPO_PUBLIC_JOB_TOKEN,
     },
     params: { ...query },
   };
